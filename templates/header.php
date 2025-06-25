@@ -1,5 +1,12 @@
 <?php
     include_once("config/url.php");
+    include_once("config/proccess.php");
+    
+    // LIMPA A MENSAGEM
+    if(isset($_SESSION['msg'])) {
+        $printMsg = $_SESSION['msg'];
+        $_SESSION['msg'] = '';
+    }
 ?>
 
 <!DOCTYPE html>
