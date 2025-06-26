@@ -27,14 +27,12 @@ if (!empty($data)) {
 
             $stmt->execute();
             $_SESSION["msg"] = "Contato criado com sucesso!";
-
         } catch (PDOException $e) {
             // CONNECTION ERROR
             $error = $e->getMessage();
             echo "Erro: " . $error;
         }
-
-    } elseif($data["type"] === "edit") {
+    } else if ($data["type"] === "edit") {
 
         $name = $data["name"];
         $phone = $data["phone"];
@@ -56,7 +54,24 @@ if (!empty($data)) {
 
             $stmt->execute();
             $_SESSION["msg"] = "Contato atualizado com sucesso!";
+        } catch (PDOException $e) {
+            // CONNECTION ERROR
+            $error = $e->getMessage();
+            echo "Erro: " . $error;
+        }
 
+    } else if ($data["type"] === "delete") {
+        $id = $data["id"];
+
+        $query = "DELETE FROM contacts WHERE id = :id";
+
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        try {
+            $stmt->execute();
+            $_SESSION["msg"] = "Contato removido com sucesso!";
         } catch (PDOException $e) {
             // CONNECTION ERROR
             $error = $e->getMessage();
@@ -65,7 +80,7 @@ if (!empty($data)) {
     }
 
     // REDIRECT HOME
-    header("Location:" . $BASE_URL . "../index.php" );
+    header("Location:" . $BASE_URL . "../index.php");
 
     // SELEÇÃO DE DADOS
 } else {

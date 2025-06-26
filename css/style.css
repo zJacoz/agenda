@@ -14,7 +14,7 @@
 }
 
 #contacts-table thead {
-    color: #fff;
+    color: #007BFF;
     background-color: #007BFF;
 }
 
@@ -27,17 +27,16 @@
     width: 150px;
 }
 
-.actions i {
-    font-size: 18px;
-    margin-right: 5px;
-}
-
 .check-icon {
     color: #1E7E34;
 }
 
 .edit-icon {
     color: #007BFF;
+}
+
+.delete-form {
+    display: inline-block;
 }
 
 .delete-icon {
